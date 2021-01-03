@@ -1,24 +1,27 @@
-from nose.tools import assert_equal
+import unittest
 
 
-class TestPairParentheses(object):
+class TestPairParentheses(unittest.TestCase):
 
-    def test_pair_parentheses(self, solution):
-        assert_equal(solution(0), set([]))
-        assert_equal(solution(1), set(['()']))
-        assert_equal(solution(2), set(['(())', 
-                                       '()()']))
-        assert_equal(solution(3), set(['((()))', 
-                                       '(()())', 
-                                       '(())()', 
-                                       '()(())', 
-                                       '()()()']))
+    def test_pair_parentheses(self):
+        parentheses = Parentheses()
+        self.assertRaises(TypeError, parentheses.find_pair, None)
+        self.assertRaises(ValueError, parentheses.find_pair, -1)
+        self.assertEqual(parentheses.find_pair(0), [])
+        self.assertEqual(parentheses.find_pair(1), ['()'])
+        self.assertEqual(parentheses.find_pair(2), ['(())',
+                                                '()()'])
+        self.assertEqual(parentheses.find_pair(3), ['((()))',
+                                                '(()())',
+                                                '(())()',
+                                                '()(())',
+                                                '()()()'])
         print('Success: test_pair_parentheses')
 
 
 def main():
     test = TestPairParentheses()
-    test.test_pair_parentheses(pair_parentheses)
+    test.test_pair_parentheses()
 
 
 if __name__ == '__main__':
